@@ -6,7 +6,7 @@ cache:
   directories:
   - node_modules
 addons:
-  sshknownhosts:
+  ssh_known_hosts:
   - 46.101.164.17
 branches:
   only:
