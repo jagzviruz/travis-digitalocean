@@ -27,5 +27,5 @@ after_success:
 - openssl aes-256-cbc -K $encrypted_7b417e6d3d7a_key -iv $encrypted_7b417e6d3d7a_iv -in deploy-key.enc -out deploy-key -d
 - chmod 600 deploy-key && mv deploy-key ~/.ssh/id_rsa
 - echo "deploy to 46.101.164.17"
-- scp dist.zip deploy@46.101.164.17:/var/www
-- ssh deploy@46.101.164.17 'unzip /var/www/dist.zip'
+- scp dist.tar.gz deploy@46.101.164.17:/var/www
+- ssh deploy@46.101.164.17 'tar -xzvf /var/www/dist.tar.gz'

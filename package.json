@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "zip -r dist.zip package.json src/",
+    "build": "tar -zcvf dist.tar.gz package.json src/",
     "start": "node src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
