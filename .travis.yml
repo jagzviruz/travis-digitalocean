@@ -1,0 +1,36 @@
+dist: trusty
+language: node_js
+node_js:
+- 10.13.0
+cache:
+  directories:
+  - node_modules
+addons:
+  sshknownhosts:
+  - 68.183.137.11 # your droplet IP goes here
+branches:
+  only:
+  - master
+env:
+  global:
+  - REMOTEAPPDIR=/var/www/
+  - REMOTEUSER=deploy
+  - REMOTEHOST=68.183.137.11 # your droplet IP goes here
+  - PORT=80
+before_install:
+- openssl aes-256-cbc -K $encrypted_c33971f5b24e_key -iv $encrypted_c33971f5b24e_iv
+  -in deploy.enc -out deploy -d
+- chmod 600 deploy && mv deploy ~/.ssh/idrsa
+
+install: yarn
+beforescript:
+
+script:
+- yarn build
+notifications:
+  email: false
+after_success:
+- echo "build done"
+- scp dist.zip $REMOTE_USER@$REMOTE_HOST:$REMOTE_APP_DIR
+- ssh $REMOTE_USER@$REMOTE_HOST 'unzip $REMOTE_APP_DIR/dist.zip'
+
