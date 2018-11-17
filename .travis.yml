@@ -7,7 +7,7 @@ cache:
   - node_modules
 addons:
   sshknownhosts:
-  - 68.183.137.11
+  - 46.101.164.17
 branches:
   only:
   - master
@@ -15,10 +15,8 @@ env:
   global:
   - REMOTEAPPDIR=/var/www/
   - REMOTEUSER=deploy
-  - REMOTEHOST=68.183.137.11
+  - REMOTEHOST=46.101.164.17
   - PORT=80
-before_install:
-- openssl aes-256-cbc -K $encrypted_c33971f5b24e_key -iv $encrypted_c33971f5b24e_iv -in deploy-key.enc -out deploy-key -d
 install: yarn
 beforescript:
 - chmod 600 deploy-key && mv deploy ~/.ssh/id_rsa
@@ -30,3 +28,6 @@ after_success:
 - echo "build done"
 - scp dist.zip $REMOTE_USER@$REMOTE_HOST:$REMOTE_APP_DIR
 - ssh $REMOTE_USER@$REMOTE_HOST 'unzip $REMOTE_APP_DIR/dist.zip'
+before_install:
+- openssl aes-256-cbc -K $encrypted_7b417e6d3d7a_key -iv $encrypted_7b417e6d3d7a_iv
+  -in deploy-key.enc -out deploy-key -d
