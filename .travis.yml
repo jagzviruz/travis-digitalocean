@@ -28,4 +28,4 @@ after_success:
 - chmod 600 deploy-key && mv deploy-key ~/.ssh/id_rsa
 - echo "deploy to 46.101.164.17"
 - scp dist.tar.gz deploy@46.101.164.17:~/
-- ssh deploy@46.101.164.17 'tar -xzvf ~/dist.tar.gz -C /var/www && cd /var/www && pm2 stop && npm i --production && npm run start &> /var/log/app.log'
+- ssh deploy@46.101.164.17 'tar -xzvf ~/dist.tar.gz -C /var/www && cd /var/www && pm2 stop all && npm i --production && npm run start &> /var/log/app.log'
