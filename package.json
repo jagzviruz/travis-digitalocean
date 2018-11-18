@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tar -zcvf dist.tar.gz package.json ecosystem.config.js src/",
+    "build": "tar -zcvf dist.tar.gz .env package.json ecosystem.config.js src/",
     "start": "pm2 start --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/jagzviruz/travis-digitalocean#readme",
   "dependencies": {
-    "express": "^4.16.4",
-    "pm2": "^3.2.2"
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4"
   }
 }
