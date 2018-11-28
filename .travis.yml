@@ -7,7 +7,7 @@ cache:
   - node_modules
 addons:
   ssh_known_hosts:
-  - 68.183.139.254
+  - 178.128.155.96
 branches:
   only:
   - master
@@ -15,7 +15,7 @@ env:
   global:
   - REMOTEAPPDIR=/var/www/
   - REMOTEUSER=deploy
-  - REMOTEHOST=68.183.139.254
+  - REMOTEHOST=178.128.155.96
   - PORT=80
 install: yarn
 script:
@@ -24,9 +24,9 @@ notifications:
   email: false
 after_success:
 - chmod 600 deploy-key && mv deploy-key ~/.ssh/id_rsa
-- echo "deploy to 68.183.139.254"
-- scp dist.tar.gz deploy@68.183.139.254:~/
-- ssh deploy@68.183.139.254 'tar -xzvf ~/dist.tar.gz -C /var/www && cd /var/www &&
+- echo "deploy to 178.128.155.96"
+- scp dist.tar.gz deploy@178.128.155.96:~/
+- ssh deploy@178.128.155.96 'tar -xzvf ~/dist.tar.gz -C /var/www && cd /var/www &&
   pm2 stop all && npm i --production && npm run start &> /var/log/app.log'
 before_install:
 - openssl aes-256-cbc -K $encrypted_7b417e6d3d7a_key -iv $encrypted_7b417e6d3d7a_iv
